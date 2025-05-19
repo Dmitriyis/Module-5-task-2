@@ -1,14 +1,19 @@
-docker exec kafka-1 kafka-acls --bootstrap-server kafka-1:9093 --add --allow-principal User:* --operation Read --operation Write --topic topic-1
+Запуск проекта. Должны находиться в корневой папке проекта.
 
-docker exec kafka-1 kafka-acls --bootstrap-server kafka-1:9093 --add --allow-principal User:* --operation Write --topic topic-2
+1. Выполнить команду по сборке исходников для запуска приложения `./mvnw clean package`
+<hr>
 
-docker exec kafka-1 kafka-acls --bootstrap-server kafka-1:9093 --add --deny-principal User:* --operation Read --topic topic-2
+2. Выполнить команду по запуску docker-compose `docker-compose up -d`
+<hr>
 
+3. Выполнить команду по запуску sh-скрипта на добавление прав на топики `.\setup_kafka_acls.sh`
+<hr>
 
-./setup_kafka_acls.sh
+URLs на создания message в topic:
+1. http://localhost:8089/create-topic-1/{value}
+2. http://localhost:8089/create-topic-2/{value}
+<hr>
 
-docker exec -i kafka-1 bash -c "kafka-acls --bootstrap-server kafka-1:9093 --command-config /etc/kafka/jaas/client_sasl.properties --add --allow-principal User:'*' --operation Read --operation Write --topic topic-1; exit"
+1. [setup_kafka_acls.sh](setup_kafka_acls.sh) Файл настроек прав на топики.
 
-docker exec -i kafka-1 bash -c "kafka-acls --bootstrap-server kafka-1:9093 --command-config /etc/kafka/jaas/client_sasl.properties --add --allow-principal User:'*' --operation Read --topic topic-2; exit"Read
-
-docker exec -i kafka-1 bash -c "kafka-acls --bootstrap-server kafka-1:9093 --command-config /etc/kafka/jaas/client_sasl.properties --add --allow-principal User:'*' --operation Write --topic topic-2; exit"
+2. [cert](cert) В папке все сертификаты логически разделены по папкам.

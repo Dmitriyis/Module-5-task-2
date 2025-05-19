@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Module-5-task-2</artifactId>
+	<artifactId>kafka-yandex</artifactId>
 	<version>0.0.1</version>
 	<name>kafka-yandex</name>
 	<description>Demo project for Spring Boot</description>
